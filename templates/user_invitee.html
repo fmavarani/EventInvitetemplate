@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Invitee</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('manage_invitees') }}">Invitees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user_page') }}">User</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form method="POST" class="form-inline my-2">
+            <label for="add" class="mr-2">Add Invitee:</label>
+            <input type="email" id="add" name="add" class="form-control mr-2" required>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invitee in invitees %}
+                <tr>
+                    <td>{{ invitee.invitee_id }}</td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="remove" value="{{ invitee.invitee_id }}">
+                            <button type="submit" class="btn btn-danger">Remove </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-secondary mt-2" href="/user">Back to User Page</a>
+    </div>
+    <!-- Add Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
