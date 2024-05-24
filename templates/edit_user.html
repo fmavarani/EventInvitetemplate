@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('manage_invitees') }}">Invitees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('user_page') }}">User</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="my-4">Edit User Information</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" value="{{ user.username }}" required><br>
+                <label for="mail_server">Mail Server:</label><br>
+                <input type="text" id="mail_server" name="mail_server" value="{{ user.mail_server }}" required><br>
+                <label for="mail_port">Mail Port:</label><br>
+                <input type="number" id="mail_port" name="mail_port" value="{{ user.mail_port }}" required><br>
+                <label for="mail_use_tls">Use TLS:</label><br>
+                <input type="checkbox" id="mail_use_tls" name="mail_use_tls" {% if user.mail_use_tls %}checked{% endif %}><br>
+                <label for="mail_username">Mail Username:</label><br>
+                <input type="text" id="mail_username" name="mail_username" value="{{ user.mail_username }}" required><br>
+                <label for="mail_password">Mail Password:</label><br>
+                <input type="password" id="mail_password" name="mail_password" value="{{ user.mail_password }}" required><br>
+                <input type="submit" value="Update" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -7,14 +7,17 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('manage_invitees') }}">Invitees</a>
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('user_page') }}">User</a>
+                    <a class="nav-link" href="{{ url_for('manage_invitees') }}">Invitees</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('edit_user') }}">Settings</a>
                 </li>
             </ul>
         </div>
@@ -23,11 +26,10 @@
         <form method="POST">
             <div class="form-group">
                 <label for="rsvp_template">RSVP Template:</label>
-                <textarea class="form-control" id="rsvp_template" name="rsvp_template"></textarea>
-            </div>
+                <textarea class="form-control" id="rsvp_template" name="rsvp_template">{{ user.rsvp_template.template }}</textarea>
             <div class="form-group">
                 <label for="email_template">Email Template:</label>
-                <textarea class="form-control" id="email_template" name="email_template"></textarea>
+                <textarea class="form-control" id="email_template" name="email_template">{{ user.email_template.template }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Update Templates</button>
         </form>
